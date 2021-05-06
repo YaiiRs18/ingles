@@ -1,0 +1,152 @@
+﻿@model ML.Entities.Alumnos
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Delete</title>
+</head>
+<body>
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>Alumnos</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Id_Alumnos)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Id_Alumnos)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Nombre)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.APaterno)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.APaterno)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.AMaterno)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.AMaterno)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Curp)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Curp)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.RFC)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.RFC)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Genero)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Genero)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Carrera)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Carrera)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Grupo)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Grupo)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Tel_Casa)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Tel_Casa)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Tel_Celular)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Tel_Celular)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Correo)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Correo)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Fecha_Nacimiento)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Fecha_Nacimiento)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Domicilio)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Domicilio)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Id_Tipo_Alumno)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Id_Tipo_Alumno)
+            </dd>
+    
+        </dl>
+    
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+    
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>
+</body>
+</html>

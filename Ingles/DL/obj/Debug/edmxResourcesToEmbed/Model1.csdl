@@ -1,0 +1,241 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="InglesModel2" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Alumnos">
+    <Key>
+      <PropertyRef Name="Id_Alumnos" />
+    </Key>
+    <Property Name="Id_Alumnos" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="APaterno" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="AMaterno" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Curp" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="RFC" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Genero" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Carrera" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Grupo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Tel_Casa" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Tel_Celular" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Correo" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Fecha_Nacimiento" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Domicilio" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Id_Tipo_Alumno" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Tipo_Alumno" Relationship="Self.FK__Alumnos__Id_Tipo__38996AB5" FromRole="Alumnos" ToRole="Tipo_Alumno" />
+    <NavigationProperty Name="Horarios" Relationship="Self.FK__Horarios__Id_Alu__3B75D760" FromRole="Alumnos" ToRole="Horarios" />
+  </EntityType>
+  <EntityType Name="Horarios">
+    <Key>
+      <PropertyRef Name="Id_Horarios" />
+    </Key>
+    <Property Name="Id_Horarios" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Hora" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Nivel" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Grupo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Id_Alumnos" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Alumnos" Relationship="Self.FK__Horarios__Id_Alu__3B75D760" FromRole="Horarios" ToRole="Alumnos" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Tipo_Alumno">
+    <Key>
+      <PropertyRef Name="Id_Tipo_Alumno" />
+    </Key>
+    <Property Name="Id_Tipo_Alumno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Tipo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Alumnos" Relationship="Self.FK__Alumnos__Id_Tipo__38996AB5" FromRole="Tipo_Alumno" ToRole="Alumnos" />
+  </EntityType>
+  <Association Name="FK__Alumnos__Id_Tipo__38996AB5">
+    <End Role="Tipo_Alumno" Type="Self.Tipo_Alumno" Multiplicity="1" />
+    <End Role="Alumnos" Type="Self.Alumnos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tipo_Alumno">
+        <PropertyRef Name="Id_Tipo_Alumno" />
+      </Principal>
+      <Dependent Role="Alumnos">
+        <PropertyRef Name="Id_Tipo_Alumno" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Horarios__Id_Alu__3B75D760">
+    <End Role="Alumnos" Type="Self.Alumnos" Multiplicity="1" />
+    <End Role="Horarios" Type="Self.Horarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Alumnos">
+        <PropertyRef Name="Id_Alumnos" />
+      </Principal>
+      <Dependent Role="Horarios">
+        <PropertyRef Name="Id_Alumnos" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="InglesEntities3" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Alumnos" EntityType="Self.Alumnos" />
+    <EntitySet Name="Horarios" EntityType="Self.Horarios" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Tipo_Alumno" EntityType="Self.Tipo_Alumno" />
+    <AssociationSet Name="FK__Alumnos__Id_Tipo__38996AB5" Association="Self.FK__Alumnos__Id_Tipo__38996AB5">
+      <End Role="Tipo_Alumno" EntitySet="Tipo_Alumno" />
+      <End Role="Alumnos" EntitySet="Alumnos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Horarios__Id_Alu__3B75D760" Association="Self.FK__Horarios__Id_Alu__3B75D760">
+      <End Role="Alumnos" EntitySet="Alumnos" />
+      <End Role="Horarios" EntitySet="Horarios" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Alumnos_Add">
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="APaterno" Mode="In" Type="String" />
+      <Parameter Name="AMaterno" Mode="In" Type="String" />
+      <Parameter Name="Curp" Mode="In" Type="String" />
+      <Parameter Name="RFC" Mode="In" Type="String" />
+      <Parameter Name="Genero" Mode="In" Type="String" />
+      <Parameter Name="Carrera" Mode="In" Type="String" />
+      <Parameter Name="Grupo" Mode="In" Type="String" />
+      <Parameter Name="Tel_Casa" Mode="In" Type="String" />
+      <Parameter Name="Tel_Celular" Mode="In" Type="String" />
+      <Parameter Name="Correo" Mode="In" Type="String" />
+      <Parameter Name="Fecha_Nacimiento" Mode="In" Type="String" />
+      <Parameter Name="Domicilio" Mode="In" Type="String" />
+      <Parameter Name="Id_Tipo_Alumno" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Alumnos_Delete">
+      <Parameter Name="Id_Alumnos" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Alumnos_GetAll" ReturnType="Collection(InglesModel2.SP_Alumnos_GetAll_Result)" />
+    <FunctionImport Name="SP_Alumnos_GetById" ReturnType="Collection(InglesModel2.SP_Alumnos_GetById_Result)">
+      <Parameter Name="Id_Alumnos" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_AlumnosUpdate">
+      <Parameter Name="Id_Alumnos" Mode="In" Type="Int32" />
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="APaterno" Mode="In" Type="String" />
+      <Parameter Name="AMaterno" Mode="In" Type="String" />
+      <Parameter Name="Curp" Mode="In" Type="String" />
+      <Parameter Name="RFC" Mode="In" Type="String" />
+      <Parameter Name="Genero" Mode="In" Type="String" />
+      <Parameter Name="Carrera" Mode="In" Type="String" />
+      <Parameter Name="Grupo" Mode="In" Type="String" />
+      <Parameter Name="Tel_Casa" Mode="In" Type="String" />
+      <Parameter Name="Tel_Celular" Mode="In" Type="String" />
+      <Parameter Name="Correo" Mode="In" Type="String" />
+      <Parameter Name="Fecha_Nacimiento" Mode="In" Type="String" />
+      <Parameter Name="Domicilio" Mode="In" Type="String" />
+      <Parameter Name="Id_Tipo_Alumno" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(InglesModel2.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(InglesModel2.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Horarios_GetAll" ReturnType="Collection(InglesModel2.SP_Horarios_GetAll_Result)" />
+    <FunctionImport Name="SP_Horarios_GetById" ReturnType="Collection(InglesModel2.SP_Horarios_GetById_Result)">
+      <Parameter Name="Id_Horarios" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_HorariosAdd">
+      <Parameter Name="Hora" Mode="In" Type="String" />
+      <Parameter Name="Nivel" Mode="In" Type="String" />
+      <Parameter Name="Grupo" Mode="In" Type="String" />
+      <Parameter Name="Id_Alumnos" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_HorariosDelete">
+      <Parameter Name="id_Horarios" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_HorariosUpdate">
+      <Parameter Name="Id_Horarios" Mode="In" Type="Int32" />
+      <Parameter Name="Hora" Mode="In" Type="String" />
+      <Parameter Name="Nivel" Mode="In" Type="String" />
+      <Parameter Name="Grupo" Mode="In" Type="String" />
+      <Parameter Name="Id_Alumnos" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+  </EntityContainer>
+  <ComplexType Name="SP_Alumnos_GetAll_Result">
+    <Property Type="Int32" Name="Id_Alumnos" Nullable="false" />
+    <Property Type="String" Name="Nombre" Nullable="false" MaxLength="25" />
+    <Property Type="String" Name="APaterno" Nullable="false" MaxLength="25" />
+    <Property Type="String" Name="AMaterno" Nullable="false" MaxLength="25" />
+    <Property Type="String" Name="Curp" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="RFC" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="Genero" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="Carrera" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="Grupo" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="Tel_Casa" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="Tel_Celular" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="Correo" Nullable="false" MaxLength="25" />
+    <Property Type="String" Name="Fecha_Nacimiento" Nullable="false" MaxLength="25" />
+    <Property Type="String" Name="Domicilio" Nullable="false" MaxLength="40" />
+    <Property Type="Int32" Name="Id_Tipo_Alumno" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="SP_Alumnos_GetById_Result">
+    <Property Type="Int32" Name="Id_Alumnos" Nullable="false" />
+    <Property Type="String" Name="Nombre" Nullable="false" MaxLength="25" />
+    <Property Type="String" Name="APaterno" Nullable="false" MaxLength="25" />
+    <Property Type="String" Name="AMaterno" Nullable="false" MaxLength="25" />
+    <Property Type="String" Name="Curp" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="RFC" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="Genero" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="Carrera" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="Grupo" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="Tel_Casa" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="Tel_Celular" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="Correo" Nullable="false" MaxLength="25" />
+    <Property Type="String" Name="Fecha_Nacimiento" Nullable="false" MaxLength="25" />
+    <Property Type="String" Name="Domicilio" Nullable="false" MaxLength="40" />
+    <Property Type="Int32" Name="Id_Tipo_Alumno" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="SP_Horarios_GetAll_Result">
+    <Property Type="Int32" Name="Id_Horarios" Nullable="false" />
+    <Property Type="String" Name="Hora" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="Nivel" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="Grupo" Nullable="false" MaxLength="20" />
+    <Property Type="Int32" Name="Id_Alumnos" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="SP_Horarios_GetById_Result">
+    <Property Type="Int32" Name="Id_Horarios" Nullable="false" />
+    <Property Type="String" Name="Hora" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="Nivel" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="Grupo" Nullable="false" MaxLength="20" />
+    <Property Type="Int32" Name="Id_Alumnos" Nullable="false" />
+  </ComplexType>
+</Schema>

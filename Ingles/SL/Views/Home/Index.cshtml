@@ -1,0 +1,120 @@
+﻿@model IEnumerable<ML.Entities.Alumnos>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+@Html.ActionLink("Agregar Nuevo", "Agregar", new { /* id=item.PrimaryKey */ }, new { @class = "btn btn-success" })
+
+<table class="table table-hover">
+    <h3>Listado de datos</h3>
+    <tr>
+
+        <th>
+            ID
+        </th>
+        <th>
+            Nombre
+        </th>
+        <th>
+            Apellido Paterno
+        </th>
+        <th>
+            Apellido Materno
+        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.Curp)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RFC)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Genero)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Carrera)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Grupo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tel_Casa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tel_Celular)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Correo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fecha_Nacimiento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Domicilio)
+            </th>
+        *@
+        <th>
+            Tipo Alumno
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.Id_Alumnos
+            </td>
+            <td>
+                @item.Nombre
+            </td>
+            <td>
+                @item.APaterno
+            </td>
+            <td>
+                @item.AMaterno
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.Curp)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RFC)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Genero)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Carrera)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Grupo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tel_Casa)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tel_Celular)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Correo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fecha_Nacimiento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Domicilio)
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Id_Tipo_Alumno)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Editar", new { ID = item.Id_Alumnos }, new { @class = "btn btn-warning" })
+                 
+                @Html.ActionLink("Eliminar", "Delete", new { ID = item.Id_Alumnos }, new { @class = "btn btn-danger" })
+                @*@Html.ActionLink("Agregar Nuevo", "Agregar", new { @class = "btn btn-info" })*@
+            </td>
+        </tr>
+    }
+
+</table>
