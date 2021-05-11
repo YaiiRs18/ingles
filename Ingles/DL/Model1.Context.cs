@@ -15,10 +15,10 @@ namespace DL
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class InglesEntities3 : DbContext
+    public partial class inglesEntities4 : DbContext
     {
-        public InglesEntities3()
-            : base("name=InglesEntities3")
+        public inglesEntities4()
+            : base("name=inglesEntities4")
         {
         }
     
@@ -29,29 +29,7 @@ namespace DL
     
         public virtual DbSet<Alumnos> Alumnos { get; set; }
         public virtual DbSet<Horarios> Horarios { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Tipo_Alumno> Tipo_Alumno { get; set; }
-    
-        public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            var versionParameter = version.HasValue ?
-                new ObjectParameter("version", version) :
-                new ObjectParameter("version", typeof(int));
-    
-            var definitionParameter = definition != null ?
-                new ObjectParameter("definition", definition) :
-                new ObjectParameter("definition", typeof(byte[]));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_alterdiagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
-        }
     
         public virtual int SP_Alumnos_Add(string nombre, string aPaterno, string aMaterno, string curp, string rFC, string genero, string carrera, string grupo, string tel_Casa, string tel_Celular, string correo, string fecha_Nacimiento, string domicilio, Nullable<int> id_Tipo_Alumno)
         {
@@ -202,66 +180,6 @@ namespace DL
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_AlumnosUpdate", id_AlumnosParameter, nombreParameter, aPaternoParameter, aMaternoParameter, curpParameter, rFCParameter, generoParameter, carreraParameter, grupoParameter, tel_CasaParameter, tel_CelularParameter, correoParameter, fecha_NacimientoParameter, domicilioParameter, id_Tipo_AlumnoParameter);
         }
     
-        public virtual int sp_creatediagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            var versionParameter = version.HasValue ?
-                new ObjectParameter("version", version) :
-                new ObjectParameter("version", typeof(int));
-    
-            var definitionParameter = definition != null ?
-                new ObjectParameter("definition", definition) :
-                new ObjectParameter("definition", typeof(byte[]));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_creatediagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
-        }
-    
-        public virtual int sp_dropdiagram(string diagramname, Nullable<int> owner_id)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_dropdiagram", diagramnameParameter, owner_idParameter);
-        }
-    
-        public virtual ObjectResult<sp_helpdiagramdefinition_Result> sp_helpdiagramdefinition(string diagramname, Nullable<int> owner_id)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagramdefinition_Result>("sp_helpdiagramdefinition", diagramnameParameter, owner_idParameter);
-        }
-    
-        public virtual ObjectResult<sp_helpdiagrams_Result> sp_helpdiagrams(string diagramname, Nullable<int> owner_id)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagrams_Result>("sp_helpdiagrams", diagramnameParameter, owner_idParameter);
-        }
-    
         public virtual ObjectResult<SP_Horarios_GetAll_Result> SP_Horarios_GetAll()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_Horarios_GetAll_Result>("SP_Horarios_GetAll");
@@ -329,28 +247,6 @@ namespace DL
                 new ObjectParameter("Id_Alumnos", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_HorariosUpdate", id_HorariosParameter, horaParameter, nivelParameter, grupoParameter, id_AlumnosParameter);
-        }
-    
-        public virtual int sp_renamediagram(string diagramname, Nullable<int> owner_id, string new_diagramname)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            var new_diagramnameParameter = new_diagramname != null ?
-                new ObjectParameter("new_diagramname", new_diagramname) :
-                new ObjectParameter("new_diagramname", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_renamediagram", diagramnameParameter, owner_idParameter, new_diagramnameParameter);
-        }
-    
-        public virtual int sp_upgraddiagrams()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
         }
     }
 }

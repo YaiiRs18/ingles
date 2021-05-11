@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="InglesModel2.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="inglesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="Alumnos">
     <Key>
       <PropertyRef Name="Id_Alumnos" />
@@ -30,16 +30,6 @@
     <Property Name="Grupo" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="Id_Alumnos" Type="int" Nullable="false" />
   </EntityType>
-  <EntityType Name="sysdiagrams">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-    <Property Name="principal_id" Type="int" Nullable="false" />
-    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="version" Type="int" />
-    <Property Name="definition" Type="varbinary(max)" />
-  </EntityType>
   <EntityType Name="Tipo_Alumno">
     <Key>
       <PropertyRef Name="Id_Tipo_Alumno" />
@@ -47,7 +37,7 @@
     <Property Name="Id_Tipo_Alumno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Tipo" Type="varchar" MaxLength="20" Nullable="false" />
   </EntityType>
-  <Association Name="FK__Alumnos__Id_Tipo__38996AB5">
+  <Association Name="FK__Alumnos__Id_Tipo__398D8EEE">
     <End Role="Tipo_Alumno" Type="Self.Tipo_Alumno" Multiplicity="1" />
     <End Role="Alumnos" Type="Self.Alumnos" Multiplicity="*" />
     <ReferentialConstraint>
@@ -59,7 +49,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Horarios__Id_Alu__3B75D760">
+  <Association Name="FK__Horarios__Id_Alu__3C69FB99">
     <End Role="Alumnos" Type="Self.Alumnos" Multiplicity="1" />
     <End Role="Horarios" Type="Self.Horarios" Multiplicity="*" />
     <ReferentialConstraint>
@@ -71,13 +61,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
-  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-    <Parameter Name="owner_id" Type="int" Mode="In" />
-    <Parameter Name="version" Type="int" Mode="In" />
-    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
-  </Function>
   <Function Name="SP_Alumnos_Add" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Nombre" Type="varchar" Mode="In" />
     <Parameter Name="APaterno" Type="varchar" Mode="In" />
@@ -118,24 +101,6 @@
     <Parameter Name="Domicilio" Type="varchar" Mode="In" />
     <Parameter Name="Id_Tipo_Alumno" Type="int" Mode="In" />
   </Function>
-  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-    <Parameter Name="owner_id" Type="int" Mode="In" />
-    <Parameter Name="version" Type="int" Mode="In" />
-    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
-  </Function>
-  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-    <Parameter Name="owner_id" Type="int" Mode="In" />
-  </Function>
-  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-    <Parameter Name="owner_id" Type="int" Mode="In" />
-  </Function>
-  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-    <Parameter Name="owner_id" Type="int" Mode="In" />
-  </Function>
   <Function Name="SP_Horarios_GetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="SP_Horarios_GetById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Id_Horarios" Type="int" Mode="In" />
@@ -156,22 +121,15 @@
     <Parameter Name="Grupo" Type="varchar" Mode="In" />
     <Parameter Name="Id_Alumnos" Type="int" Mode="In" />
   </Function>
-  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-    <Parameter Name="owner_id" Type="int" Mode="In" />
-    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
-  </Function>
-  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-  <EntityContainer Name="InglesModel2StoreContainer">
+  <EntityContainer Name="inglesModelStoreContainer">
     <EntitySet Name="Alumnos" EntityType="Self.Alumnos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Horarios" EntityType="Self.Horarios" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Tipo_Alumno" EntityType="Self.Tipo_Alumno" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK__Alumnos__Id_Tipo__38996AB5" Association="Self.FK__Alumnos__Id_Tipo__38996AB5">
+    <AssociationSet Name="FK__Alumnos__Id_Tipo__398D8EEE" Association="Self.FK__Alumnos__Id_Tipo__398D8EEE">
       <End Role="Tipo_Alumno" EntitySet="Tipo_Alumno" />
       <End Role="Alumnos" EntitySet="Alumnos" />
     </AssociationSet>
-    <AssociationSet Name="FK__Horarios__Id_Alu__3B75D760" Association="Self.FK__Horarios__Id_Alu__3B75D760">
+    <AssociationSet Name="FK__Horarios__Id_Alu__3C69FB99" Association="Self.FK__Horarios__Id_Alu__3C69FB99">
       <End Role="Alumnos" EntitySet="Alumnos" />
       <End Role="Horarios" EntitySet="Horarios" />
     </AssociationSet>

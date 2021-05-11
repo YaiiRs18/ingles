@@ -14,7 +14,7 @@ namespace BL
             ML.Response.AlumnosResponse response = new ML.Response.AlumnosResponse();
             try
             {
-                using (DL.InglesEntities3 context = new DL.InglesEntities3())
+                using (DL.inglesEntities4 context = new DL.inglesEntities4())
                 {
                     var GetAll = context.SP_Alumnos_GetAll().ToList();
 
@@ -79,7 +79,7 @@ namespace BL
             ML.Response.AlumnosResponse response = new ML.Response.AlumnosResponse();
             try
             {
-                using (DL.InglesEntities3 context = new DL.InglesEntities3())
+                using (DL.inglesEntities4 context = new DL.inglesEntities4())
                 {
                     var GetById = context.SP_Alumnos_GetById(ID).ToList();
                     
@@ -147,7 +147,7 @@ namespace BL
             ML.Response.AlumnosResponse response = new ML.Response.AlumnosResponse();
             try
             {
-                using (DL.InglesEntities3 context = new DL.InglesEntities3())
+                using (DL.inglesEntities4 context = new DL.inglesEntities4())
                 {
                     var Add = context.SP_Alumnos_Add(alumnos.Nombre, alumnos.APaterno, alumnos.AMaterno, alumnos.Curp, alumnos.RFC,
                                                      alumnos.Genero, alumnos.Carrera, alumnos.Grupo, alumnos.Tel_Casa, alumnos.Tel_Celular,
@@ -193,7 +193,7 @@ namespace BL
             ML.Response.AlumnosResponse response = new ML.Response.AlumnosResponse();
             try
             {
-                using (DL.InglesEntities3 context = new DL.InglesEntities3())
+                using (DL.inglesEntities4 context = new DL.inglesEntities4())
                 {
                     var Update = context.SP_AlumnosUpdate(alumnos.Id_Alumnos, alumnos.Nombre, alumnos.APaterno, alumnos.AMaterno, alumnos.Curp, alumnos.RFC,
                                                      alumnos.Genero, alumnos.Carrera, alumnos.Grupo, alumnos.Tel_Casa, alumnos.Tel_Celular,
@@ -240,7 +240,7 @@ namespace BL
             ML.Response.AlumnosResponse response = new ML.Response.AlumnosResponse();
             try
             {
-                using (DL.InglesEntities3 context = new DL.InglesEntities3())
+                using (DL.inglesEntities4 context = new DL.inglesEntities4())
                 {
                     var Delete = context.SP_Alumnos_Delete(ID);
 

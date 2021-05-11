@@ -76,9 +76,28 @@ namespace SL.Controllers
             {
                 var DatosInfo = request.Content.ReadAsStringAsync().Result;
                 var Listado = JsonConvert.DeserializeObject<List<ML.Entities.Alumnos>>(DatosInfo);
+                ML.Entities.Alumnos alumnos = new ML.Entities.Alumnos();
+                foreach (var obj in Listado)
+                {
+                    alumnos.Id_Alumnos = obj.Id_Alumnos;
+                    alumnos.Nombre = obj.Nombre;
+                    alumnos.APaterno = obj.APaterno;
+                    alumnos.AMaterno = obj.AMaterno;
+                    alumnos.Curp = obj.Curp;
+                    alumnos.RFC = obj.RFC;
+                    alumnos.Genero = obj.Genero;
+                    alumnos.Carrera = obj.Carrera;
+                    alumnos.Grupo = obj.Grupo;
+                    alumnos.Tel_Casa = obj.Tel_Casa;
+                    alumnos.Tel_Celular = obj.Tel_Celular;
+                    alumnos.Correo = obj.Correo;
+                    alumnos.Fecha_Nacimiento = obj.Fecha_Nacimiento;
+                    alumnos.Domicilio = obj.Domicilio;
+                    alumnos.Id_Tipo_Alumno = obj.Id_Tipo_Alumno;
 
+                }
 
-                return View("Editar");
+                return View(alumnos);
             }
 
             return View();

@@ -13,7 +13,7 @@ namespace BL
             ML.Response.HorariosResponse response = new ML.Response.HorariosResponse();
             try
             {
-                using (DL.InglesEntities3 context = new DL.InglesEntities3())
+                using (DL.inglesEntities4 context = new DL.inglesEntities4())
                 {
                     var GetAll = context.SP_Horarios_GetAll().ToList();
                     if(GetAll != null)
@@ -67,7 +67,7 @@ namespace BL
             ML.Response.HorariosResponse response = new ML.Response.HorariosResponse();
             try
             {
-                using (DL.InglesEntities3 context = new DL.InglesEntities3())
+                using (DL.inglesEntities4 context = new DL.inglesEntities4())
                 {
                     var GetById = context.SP_Horarios_GetById(horarios.Id_Horarios).ToList();
                     if(GetById != null)
@@ -118,7 +118,7 @@ namespace BL
            
             try
             {
-                using (DL.InglesEntities3 context = new DL.InglesEntities3())
+                using (DL.inglesEntities4 context = new DL.inglesEntities4())
                 {
                    
                     var Add = context.SP_HorariosAdd(horarios.Hora, horarios.Nivel, horarios.Grupo, horarios.Alumnos.Id_Alumnos);
@@ -158,7 +158,7 @@ namespace BL
             ML.Response.HorariosResponse response = new ML.Response.HorariosResponse();
             try
             {
-                using (DL.InglesEntities3 context = new DL.InglesEntities3())
+                using (DL.inglesEntities4 context = new DL.inglesEntities4())
                 {
                
                     var Update = context.SP_HorariosUpdate(horarios.Id_Horarios, horarios.Hora, horarios.Nivel, horarios.Grupo, horarios.Alumnos.Id_Alumnos);
@@ -198,7 +198,7 @@ namespace BL
             ML.Response.HorariosResponse response = new ML.Response.HorariosResponse();
             try
             {
-                using (DL.InglesEntities3 context = new DL.InglesEntities3())
+                using (DL.inglesEntities4 context = new DL.inglesEntities4())
                 {
                     var Delete = context.SP_HorariosDelete(horarios.Id_Horarios);
                     if(Delete > 0)
